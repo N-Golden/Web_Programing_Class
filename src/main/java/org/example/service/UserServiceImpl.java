@@ -2,7 +2,7 @@ package org.example.service;
 
 import org.example.DAO.UserDao;
 import org.example.DAO.UserDaoImpl;
-import org.example.models.User;
+import org.example.model.User;
 
 public class UserServiceImpl implements UserService {
     UserDao userDao = new UserDaoImpl();

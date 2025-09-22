@@ -5,7 +5,7 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
-import org.example.models.User;
+import org.example.model.User;
 
 import java.io.IOException;
 import java.io.InputStream;

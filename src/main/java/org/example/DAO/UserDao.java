@@ -1,6 +1,6 @@
 package org.example.DAO;
 
-import org.example.models.User;
+import org.example.model.User;
 
 public interface UserDao {
     User get(String username);

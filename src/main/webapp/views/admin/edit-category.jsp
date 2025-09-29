@@ -31,7 +31,7 @@
             </div>
 
             <div class="mb-3">
-                <img class="img-responsive" width="100px" src="${imgUrl}"
+                <img class="img-responsive" width="100px" src="${category.icon}"
                      alt="">
                 <label>Ảnh đại diện</label> <input type="file" name="icon"
                                                    value="${category.icon}" />

@@ -3,6 +3,7 @@ package org.example.service;
 import org.example.DAO.CategoryDao;
 import org.example.DAO.CategoryDaoImpl;
 import org.example.model.Category;
+import org.example.utils.Aws;
 
 import java.io.File;
 import java.util.List;
@@ -40,7 +41,10 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category get(int id) {
-        return categoryDao.get(id);
+        Aws aws = new Aws();
+        Category category = categoryDao.get(id);
+        category.setIcon(aws.getImageCategoryLink(category.getIcon()));
+        return category;
     }
 
     @Override
@@ -50,7 +54,14 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> getAll() {
-        return categoryDao.getAll();
+        Aws aws = new Aws();
+        List<Category> categories = categoryDao.getAll();
+        for (Category category : categories) {
+            String icon = category.getIcon();
+            String newIcon = aws.getImageCategoryLink(icon);
+            category.setIcon(newIcon);
+        }
+        return categories;
     }
 
     @Override

@@ -99,7 +99,7 @@
         <c:forEach items="${cateList}" var="cate" varStatus="STT">
             <tr class="odd gradeX">
                 <td>${STT.index+1 }</td>
-                <c:url value="/image?fname=${cate.icon}" var="imgUrl"></c:url>
+                <c:url value="${cate.icon}" var="imgUrl"></c:url>
                 <td><img height="150" width="200" src="${imgUrl}"/></td>
                 <td>${cate.name }</td>
                 <td>

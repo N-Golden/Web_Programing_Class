@@ -8,18 +8,21 @@ public class UserServiceImpl implements UserService {
     UserDao userDao = new UserDaoImpl();
 
     @Override
+    public User findByUsername(String username, String password) {
+        return userDao.get(username, password);
+    }
+
+    @Override
     public void insert(User user) {
         userDao.insert(user);
     }
 
     @Override
     public boolean register(String email, String password, String username, String fullname, String phone) {
-        if (userDao.checkExistUsername(username)) {
+        if (userDao.checkExistUsername(username, password)) {
             return false;
         }
-        long millis=System.currentTimeMillis();
-        java.sql.Date date=new java.sql.Date(millis);
-        userDao.insert(new User(email, username, fullname,password, phone));
+        userDao.insert(new User(email, password, username,fullname, phone));
         return true;
     }
 
@@ -29,8 +32,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean checkExistUsername(String username) {
-        return userDao.checkExistUsername(username);
+    public boolean checkExistUsername(String username, String password) {
+        return userDao.checkExistUsername(username, password);
     }
 
     @Override

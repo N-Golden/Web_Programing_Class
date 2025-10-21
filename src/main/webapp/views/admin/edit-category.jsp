@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Edit</title>
+    <title>Sửa danh mục</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body class="p-4">
@@ -31,17 +31,15 @@
             </div>
 
             <div class="mb-3">
-                <img class="img-responsive" width="100px" src="${category.icon}"
-                     alt="">
-                <label>Ảnh đại diện</label> <input type="file" name="icon"
-                                                   value="${category.icon}" />
+                <img class="img-responsive" width="100px" src="${category.icon}" alt="">
+                <label>Ảnh đại diện</label>
+                <input type="file" class="form-control" name="icon" value="${category.icon}"/>
             </div>
 
             <div class="d-flex gap-2">
-                <button type="submit" class="btn btn-primary">Edit</button>
-                <button class="btn btn-secondary">Reset</button>
+                <input type="submit" class="btn btn-primary" value="Sửa">
+<%--                <button class="btn btn-secondary">Làm mới</button>--%>
             </div>
-
         </form>
     </div>
 </div>

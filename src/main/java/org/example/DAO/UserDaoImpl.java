@@ -3,8 +3,10 @@ package org.example.DAO;
 import org.example.model.User;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 
 public class UserDaoImpl implements UserDao {
     public Connection conn = null;
@@ -12,12 +14,13 @@ public class UserDaoImpl implements UserDao {
     public ResultSet rs = null;
 
     @Override
-    public User get(String username) {
-        String sql = "SELECT * FROM test_db.User WHERE username = ? ";
+    public User get(String username, String password) {
+        String sql = "SELECT * FROM test_db.User WHERE username = ? and password = ?";
         try {
             conn = DBConnect.initializeDatabase();
             ps = conn.prepareStatement(sql);
             ps.setString(1, username);
+            ps.setString(2, password);
             rs = ps.executeQuery();
             while (rs.next()) {
                 User user = new User();
@@ -51,7 +54,11 @@ public class UserDaoImpl implements UserDao {
             ps.setString(5, null);
             ps.setInt(6, 1);
             ps.setString(7, user.getPhone());
-            ps.setDate(8, null);
+
+            LocalDate today = LocalDate.now();
+            Date sqlDate = Date.valueOf(today);
+            ps.setDate(8, sqlDate);
+
             ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,13 +85,14 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean checkExistUsername(String username) {
+    public boolean checkExistUsername(String username, String password) {
         boolean duplicate = false;
-        String query = "select * from test_db.User where username = ?";
+        String query = "select * from test_db.User where username = ? and password = ?";
         try {
             conn = DBConnect.initializeDatabase();
             ps = conn.prepareStatement(query);
             ps.setString(1, username);
+            ps.setString(2, password);
             rs = ps.executeQuery();
             if (rs.next()) {
                 duplicate = true;

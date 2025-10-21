@@ -15,7 +15,7 @@ public class Aws {
         // 2️⃣ Create S3Presigner using a profile (can be IAM user or SSO)
         return S3Presigner.builder()
                 .region(region)
-                .credentialsProvider(ProfileCredentialsProvider.create(Constant.AWS.PROFILE_AUTHENTICATION)) // your profile
+                .credentialsProvider(ProfileCredentialsProvider.create(Constant.AWS.PROFILE_AUTHENTICATION)) // this profile use SSO token
                 .build();
     }
 

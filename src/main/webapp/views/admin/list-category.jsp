@@ -64,21 +64,19 @@
 <!-- Sidebar -->
 <div class="sidebar">
     <div class="text-center mb-3">
-        <img src="avatar.png" class="img-fluid rounded-circle" width="120" alt="Admin">
+        <img src="<c:url value='/images/avatar.png'/>" class="img-fluid rounded-circle" width="120" alt="Admin">
         <p>Bạn là Admin</p>
     </div>
-    <a href="dashboard.jsp" class="active">Dashboard</a>
-    <a href="#">Quản lý Danh mục</a>
+    <a class="active" href="<c:url value='/admin/category/list'/>">Danh sách danh mục</a>
     <a href="<c:url value='/admin/category/add'/>">Thêm danh mục mới</a>
-    <a href="<c:url value='/admin/category/list'/>">Danh sách danh mục</a>
-    <a href="#">Quản lý sản phẩm</a>
-    <a href="#">Quản lý tài khoản</a>
+<%--    <a href="#">Quản lý sản phẩm</a>--%>
+<%--    <a href="#">Quản lý tài khoản</a>--%>
 </div>
 
 <div class="content">
     <!-- Topbar -->
     <div class="topbar">
-        <span>Xin chào, <c:out value="${sessionScope.user.fullname}"/></span>
+        <span>Xin chào, <c:out value="${sessionScope.user.fullName}"/></span>
         <a href="logout" class="btn btn-danger btn-sm ms-3">Đăng xuất</a>
     </div>
 
@@ -101,7 +99,7 @@
                 <td>${STT.index+1 }</td>
                 <c:url value="${cate.icon}" var="imgUrl"></c:url>
                 <td><img height="150" width="200" src="${imgUrl}"/></td>
-                <td>${cate.name }</td>
+                <td>${cate.name}</td>
                 <td>
                     <a href="<c:url value='/admin/category/edit?id=${cate.id}'/>" class="center">Sửa</a>|
                     <a href="<c:url value='/admin/category/delete?id=${cate.id}'/>" class="center">Xóa</a></td>

@@ -32,26 +32,28 @@ public class RegisterController extends HttpServlet {
         UserService service = new UserServiceImpl();
         String alertMsg = "";
 
+        //validate
         if (service.checkExistEmail(email)) {
             alertMsg = "Email đã tồn tại!";
             req.setAttribute("alert", alertMsg);
             req.getRequestDispatcher(Constant.Path.REGISTER).forward(req, resp);
             return;
         }
-        if (service.checkExistUsername(username)) {
+        if (service.checkExistUsername(username, password)) {
             alertMsg = "Tài khoản đã tồn tại!";
             req.setAttribute("alert", alertMsg);
             req.getRequestDispatcher(Constant.Path.REGISTER).forward(req, resp);
             return;
         }
-        boolean isSuccess = service.register(username, password, email,
+
+        boolean isSuccess = service.register(email, password, username,
                 fullname, phone);
         if (isSuccess) {
-            alertMsg = "Register success. Please login again.!";
+            alertMsg = "Đăng kí thành công. Đăng nhập lại!";
             req.setAttribute("alert", alertMsg);
             req.getRequestDispatcher(Constant.Path.LOGIN).forward(req, resp);
         } else {
-            alertMsg = "System error!";
+            alertMsg = "Lỗi hệ thống, thử lại!";
             req.setAttribute("alert", alertMsg);
             req.getRequestDispatcher(Constant.Path.REGISTER).forward(req, resp);
         }

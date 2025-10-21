@@ -52,12 +52,28 @@ public class LoginSession extends HttpServlet {
         String username = req.getParameter("Username");
         String password = req.getParameter("Password");
 
-        HttpSession session = req.getSession(true);
-        session.setAttribute("username", username);
-        session.setAttribute("password", password);
-        session.setMaxInactiveInterval(60);
+        boolean isValid = false;
+        if (!username.isEmpty() && !password.isEmpty()) {
+            InputStream userData = getClass().getResourceAsStream("/user.json");
+            ObjectMapper mapper = new ObjectMapper();
+            User user = mapper.readValue(userData, User.class);
+            if(user != null){
+                if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                    isValid = true;
+                }
+            }
+        }
 
-        PrintWriter out = resp.getWriter();
-        out.println("Login successful! Session ID: " + session.getId());
+        if(isValid){
+            HttpSession session = req.getSession(true);
+            session.setAttribute("username", username);
+            session.setAttribute("password", password);
+            session.setMaxInactiveInterval(60);
+            PrintWriter out = resp.getWriter();
+            out.println("Login successful! Session ID: " + session.getId());
+        }else{
+            PrintWriter out = resp.getWriter();
+            out.println("Sai password");
+        }
     }
 }

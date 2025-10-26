@@ -77,7 +77,7 @@
     <!-- Topbar -->
     <div class="topbar">
         <span>Xin chào, <c:out value="${sessionScope.user.fullName}"/></span>
-        <a href="logout" class="btn btn-danger btn-sm ms-3">Đăng xuất</a>
+<%--        <a href="logout" class="btn btn-danger btn-sm ms-3">Đăng xuất</a>--%>
     </div>
 
     <!-- Main Content -->

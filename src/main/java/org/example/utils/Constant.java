@@ -8,8 +8,10 @@ public class Constant {
         public static final String DIR = "/views/topbar.jsp";
     }
 
-    public static class AWS{
-        public static final String BUCKET_IMAGE_CATEGORY="category-image-clothes";
-        public static final String PROFILE_AUTHENTICATION="PowerUserAccess-654654410861";
+    public static class AWS {
+        public static final String BUCKET_IMAGE_CATEGORY="category-images-web-class";
+        public static final String PROFILE_AUTHENTICATION="nguyendev";
     }
+
+    public static final String DEFAULT_FILENAME = "default";
 }

@@ -1,5 +1,6 @@
 package org.example.controllers;
 
+import com.mysql.cj.Constants;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -7,9 +8,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 import org.example.model.Category;
 import org.example.service.CategoryService;
 import org.example.service.CategoryServiceImpl;
+import org.example.utils.Constant;
 
 import java.io.IOException;
 
@@ -33,13 +36,13 @@ public class CategoryEditController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse
             resp) throws ServletException, IOException {
-        String name = req.getParameter("name");
+
+        // Lấy file từ form (input name="file")
+        Part filePart = req.getPart("icon");
         String id = req.getParameter("cate_id");
-        Category category = new Category();
-        category.setId(Integer.parseInt(id));
-        category.setName(name);
-        cateService.edit(category);
-        // Redirect về GET để load lại trang với dữ liệu mới
-        resp.sendRedirect(req.getContextPath() + "/admin/category/edit?id=" + id);
+        String name = req.getParameter("name");
+
+        cateService.edit(id, name, filePart);
+        resp.sendRedirect(req.getContextPath() + "/admin/category/list");
     }
 }

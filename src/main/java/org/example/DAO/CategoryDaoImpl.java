@@ -53,7 +53,7 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
-    public Category get(int id) {
+    public Category getById(int id) {
         String sql = "SELECT * FROM test_db.Category WHERE cate_id = ? ";
         try {
             Connection con = DBConnect.initializeDatabase();

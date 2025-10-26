@@ -21,9 +21,6 @@
     <div class="card-body">
         <form action="${add}" method="post" enctype="multipart/form-data">
 
-            <!-- Hidden cate_id -->
-            <input type="hidden" name="cate_id" value="${category.id}"/>
-
             <div class="mb-3">
                 <label class="form-label">Tên danh sách:</label>
                 <input type="text" class="form-control" name="name" value="${category.name}" required>
@@ -38,7 +35,6 @@
 
             <div class="d-flex gap-2">
                 <button type="submit" class="btn btn-primary">Add</button>
-                <button class="btn btn-secondary">Reset</button>
             </div>
 
         </form>
